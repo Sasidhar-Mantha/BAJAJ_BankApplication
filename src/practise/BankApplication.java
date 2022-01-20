@@ -2,27 +2,27 @@ package practise;
 
 import java.util.*;
 class Employee{
-	private static String ename;
-	private static int id;
-	static Scanner sc=new Scanner(System.in);
+	private String ename;
+	private int id;
+	Scanner sc=new Scanner(System.in);
 	public void enter() {
 		System.out.println("enter employee name :");
 		ename =sc.next();
 		System.out.println("enter employee id :");
 		id=sc.nextInt();
 	}
-	public static void display() {
-		System.out.println("Name of the employe :"+ename);
+	public void display() {
+		System.out.println("Name of the employee : "+ename);
 		System.out.println("id of the employee : "+id);
 	}
-	public static void update(int id,Employee employee[]) {
+	public void update(int id,Employee employee[]) {
 		int n1=getId(id,employee);
 		System.out.println("Enter the updated name ");
 		employee[n1].ename=sc.next();
 		employee[n1].display();
 		
 	}
-	public static int getId(int id,Employee[] employee) {
+	public int getId(int id,Employee[] employee) {
 		for(int i=0;i<employee.length;i++) {
 			if(id==employee[i].id) {
 				return i;
@@ -30,19 +30,19 @@ class Employee{
 		}
 		return 0; 
 	}
-	public static int getName(String name,Employee[] employee) {
-		for(int i=0;i<employee.length;i++) {
-			if(name.eqemployee[i].ename) {
+	public int getName(String name,Employee[] employee) {
+		for(int i=0;i<(employee.length);i++) {
+			if(name == employee[i].ename) {
 				return i;
 			}
 		}
 		return 0;
 	}
-	public static void getDetails(String name,Employee employee[]) {
+	public void getDetails(String name,Employee employee[]) {
 		int n=getName(name,employee);
 		employee[n].display();
 	}
-	public static void asc(Employee[] employee) {
+	public void asc(Employee[] employee) {
 		int n;
 		for(int i=0;i<employee.length;i++) {
 			n=i;
@@ -51,22 +51,23 @@ class Employee{
 	}
 	
 	
+	
 }
 public class BankApplication{
 	public static void main(String[] args) {
 		Scanner sc=new Scanner(System.in);
 		System.out.println("Enter the number of employess you want to enter?");
 		int n=sc.nextInt();
-		 Employee employee[]=new Employee[n];
+		Employee employee[]=new Employee[n];
 		for(int i=0;i<n;i++) {
 			employee[i]=new Employee();
 			employee[i].enter();
 		}
 		
 	int ch;
-	System.out.println("***what you want to do?***");
+	System.out.println("SELECT YOUR CHOICE OF MODIFICATION");
 	
-	System.out.println("Enter 1 for append");
+	 System.out.println("Enter 1 for display");
 	 System.out.println("Enter 2 for delete");
 	 System.out.println("Enter 3 for update");
 	 System.out.println("Enter 4 for Search by name");
@@ -81,30 +82,37 @@ public class BankApplication{
 		 }
 		 break;
 	 case 2:
-		 
+		 int id2;
+		 System.out.println("Enter the ID to be deleted");
+		 id2 = sc.nextInt();
 		 break;
 	 case 3:
 	 {
 		 System.out.println("Enter the id you want to update ");
 		 int num=sc.nextInt();
-		 Employee.update(num,employee);
-		 
-		 
-		 
+		 employee[num].update(num,employee);
 		 break;
 	 }
 	 case 4:
 	 {
 		 System.out.println("Enter the name you want to search");
-		 String name=sc.next();
-		 Employee.getDetails(name,employee);
+		 String name = sc.next();
+		 int id;
+		 id = employee[n-1].getName(name,employee);
+		 System.out.println(id);
+		 employee[id].display();
 		 break;
 	 }
-	 case 5:
-		 Employee.asc(employee);
+	 case 5:{
+		 //Employee.asc(employee);
 		 break;
 	 }
-	
+	 case 7:{
+		 System.out.println("EXIT");
+		 break;
+	 }
+		 
+	 }	
 	
 
 }
